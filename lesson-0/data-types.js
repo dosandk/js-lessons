@@ -1,5 +1,5 @@
 console.log('ЛИТЕРАЛЫ');
- console.log('простые типы данных');
+console.log('простые типы данных');
 
 var myString = 'my-string';
 
