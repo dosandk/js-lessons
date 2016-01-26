@@ -1,17 +1,39 @@
 var text = "Написать функцию, к-я принимает первый аргумент - число, второй вргумент - степень. Возвращает число возведенное в заданную степень";
 
-function textRepeater(text, times) {
+function textRepeater1(text, times) {
     var tmpArr = [];
 
     for (var i = 0; i < times; i++) {
         tmpArr.push(text);
     }
 
-    return tmpArr.join(", ");
+    return tmpArr.join(', ');
 }
 
-function turnMeBaby(text) {
-    return text.split(/[\s,]+/).reverse().join('');
+function textRepeater2(text, times) {
+    var newString = '',
+        separator = '*';
+
+    for (var i = 0; i < times; i++) {
+        newString += text + separator;
+    }
+
+    return newString;
+}
+
+function turnMeBaby1(text) {
+    return text.split('').reverse().join('');
+}
+
+function turnMeBaby2(text) {
+    var newString = '',
+        index = text.length;
+
+    while (index--) {
+        newString += text[index];
+    }
+
+    return newString;
 }
 
 function countWords1(text) {
@@ -44,6 +66,3 @@ function countWords2(string) {
 
     return strIter(string, 'outsideWord', 0);
 }
-
-console.log(countWords1(text));
-console.log(countWords2(text));
