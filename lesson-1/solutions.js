@@ -66,3 +66,28 @@ function countWords2(string) {
 
     return strIter(string, 'outsideWord', 0);
 }
+
+function countWords3(str) {
+    if (!str || !str.length) {
+        return 0;
+    }
+
+    var wordSpaceDetector = /\s/;
+    var count = 0;
+    var wordStart = false;
+    var len = str.length;
+
+    for (var i = 0; i < len; i++) {
+        var char = str[i];
+
+        if (wordSpaceDetector.test(char)) {
+            wordStart = false;
+        }
+        else {
+            count += wordStart ? 0 : 1;
+            wordStart = true;
+        }
+    }
+
+    return count;
+}
