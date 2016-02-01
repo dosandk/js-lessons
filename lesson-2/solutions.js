@@ -20,3 +20,13 @@ function multiTable() {
         console.log(separator);
     }
 };
+
+function multiTable2(obj, times) {
+    var result;
+
+    for (var i = 1; i <= times; i++) {
+        result = obj * i;
+        console.log(obj + " * " + i + " = " + result);
+    }
+
+};
