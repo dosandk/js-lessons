@@ -1,6 +1,6 @@
 #### Functions Homework
 
-* Добавить к объекту `localesManager`
+Добавить к объекту `localesManager`
 
 ```javascript
 var localesManager = {
