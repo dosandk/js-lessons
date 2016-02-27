@@ -4,8 +4,32 @@
     <meta charset="UTF-8">
     <title>Objects part 2</title>
     <script src="objects-part-2.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
 </head>
 <body>
 
+    <div class="selector">Selector</div>
+
+    <script>
+        var obj = {
+            method1: function() {
+                console.error('method1');
+
+                this.method3();
+            },
+            method2: function() {
+                var that = this;
+
+                $('.selector').on('click', function() {
+                    that.method1();
+                });
+            },
+            method3: function() {
+                console.log('method3');
+            }
+        };
+
+        obj.method2();
+    </script>
 </body>
 </html>
