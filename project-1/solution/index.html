@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="container">
+            <h2>Create article</h2>
+            <div class="form-container">
+                <form id="create-article">
+                    <input id="title" name="title" type="text"/>
+                    <input type="submit"/>
+                </form>
+            </div>
+            <div class="articles-container">
+                <h3>Articles list</h3>
+                <ul id="articles-list">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    var form = document.getElementById('create-article');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var title = e.target.elements['title'];
+        var titleValue = title.value;
+        var titleTextNode = document.createTextNode(titleValue);
+
+        var article = document.createElement('li');
+        article.appendChild(titleTextNode);
+
+        var articlesList = document.getElementById('articles-list');
+        articlesList.appendChild(article);
+
+        // reset form
+        title.value = '';
+    });
+</script>
+</body>
+</html>
