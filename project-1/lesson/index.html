@@ -6,22 +6,57 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <div class="main-container">
-        <div class="container">
-            <h2>Create article</h2>
-            <div class="form-container">
-                <form id="create-article" action="javascript:void(0);">
-                    <input id="title" name="title" type="text"/>
-                    <input type="submit"/>
-                </form>
-            </div>
-            <div class="articles-container">
-                <h3>Articles list</h3>
-                <ul id="articles-list">
+    <div id="root">&nbsp;</div>
 
-                </ul>
+    <script id="tpl-create-article" type="text/template">
+        <div class="main-container">
+            <div class="container">
+                <h2>Create article</h2>
+                <div class="form-container">
+                    <form id="create-article" action="javascript:void(0);">
+                        <input id="title" name="title" type="text"/>
+                        <input type="submit"/>
+                    </form>
+                </div>
+                <div class="articles-container">
+                    <h3>Articles list</h3>
+                    <ul id="articles-list">
+
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
+    </script>
+
+    <script id="template" type="text/template">
+        <li>
+            <h3>{{ title }}</h3>
+            <p><a href="#">social sharing</a></p>
+        </li>
+    </script>
+
+    <script>
+        var root = document.getElementById('root');
+        var createArticle = document.getElementById('tpl-create-article').innerHTML;
+
+        root.innerHTML = createArticle;
+
+        var form = document.getElementById('create-article');
+        var template = document.getElementById('template').innerHTML;
+
+        console.log('template', template.innerHTML);
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var inputTitle = e.target.children.title;
+            var inputTitleValue = inputTitle.value;
+            var articlesList = document.getElementById('articles-list');
+
+            articlesList.innerHTML += template.replace('{{ title }}', inputTitleValue);
+
+            inputTitle.value = '';
+        });
+    </script>
 </body>
 </html>
