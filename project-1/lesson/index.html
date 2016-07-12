@@ -16,7 +16,9 @@
                     <form id="create-article" action="javascript:void(0);">
                         <input id="title" name="title" type="text"/>
                         <input type="submit"/>
+                        <textarea rows="4" cols="50" id="content" name="content" form="create-article"></textarea>
                     </form>
+
                 </div>
                 <div class="articles-container">
                     <h3>Articles list</h3>
@@ -31,6 +33,7 @@
     <script id="template" type="text/template">
         <li>
             <h3>{{ title }}</h3>
+            <div>{{ content }}</div>
             <p><a href="#">social sharing</a></p>
         </li>
     </script>
@@ -44,16 +47,21 @@
         var form = document.getElementById('create-article');
         var template = document.getElementById('template').innerHTML;
 
-        console.log('template', template.innerHTML);
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-
+            console.log (e.target);
             var inputTitle = e.target.children.title;
+            console.log('inputTitle', inputTitle);
+
             var inputTitleValue = inputTitle.value;
+
+            var textareaContent = e.target.children.content.value;
+            console.log('textarea', textareaContent);
+
             var articlesList = document.getElementById('articles-list');
 
-            articlesList.innerHTML += template.replace('{{ title }}', inputTitleValue);
+            articlesList.innerHTML += template.replace('{{ title }}', inputTitleValue).replace('{{ content }}', textareaContent);
 
             inputTitle.value = '';
         });
