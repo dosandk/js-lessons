@@ -13,7 +13,7 @@
             <div class="container">
                 <h2>Create article</h2>
                 <div class="form-container">
-                    <form id="create-article" action="javascript:void(0);">
+                    <form name="create-article" id="create-article" action="javascript:void(0);">
                         <input id="title" name="title" type="text"/>
                         <input type="submit"/>
                         <textarea rows="4" cols="50" id="content" name="content" form="create-article"></textarea>
@@ -47,24 +47,24 @@
         var form = document.getElementById('create-article');
         var template = document.getElementById('template').innerHTML;
 
-
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            console.log (e.target);
             var inputTitle = e.target.children.title;
-            console.log('inputTitle', inputTitle);
-
             var inputTitleValue = inputTitle.value;
-
-            var textareaContent = e.target.children.content.value;
-            console.log('textarea', textareaContent);
-
+            var textareaContent = e.target.children.content;
+            var textareaContentValue = textareaContent.value;
             var articlesList = document.getElementById('articles-list');
 
-            articlesList.innerHTML += template.replace('{{ title }}', inputTitleValue).replace('{{ content }}', textareaContent);
-
-            inputTitle.value = '';
+            if (inputTitleValue == "" || textareaContentValue == "") {
+                alert("Title or message field must be filled out");
+                return false;
+            } else {
+              articlesList.innerHTML += template.replace('{{ title }}', inputTitleValue).replace('{{ content }}', textareaContentValue);
+              inputTitle.value = '';
+              textareaContent.value = '';
+            };
         });
+
     </script>
 </body>
 </html>
