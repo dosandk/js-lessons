@@ -8,85 +8,43 @@
     <script src="./bower_components/jquery/dist/jquery.js"></script>
     <script src="./bower_components/underscore/underscore.js"></script>
     <script src="./bower_components/backbone/backbone.js"></script>
+
+    <script src="./templates/template.js"></script>
 </head>
 <body>
 
-    <div class="main-container">
+    <div id="app">&nbsp;</div>
+
+    <!--<div class="main-container">
         <div class="container">
-            <h2>Create article</h2>
-            <div class="form-container">
-                <form id="create-article">
-                    <input id="title" name="title" type="text"/>
-                    <input type="submit"/>
-                </form>
-            </div>
-            <div class="articles-container">
-                <h3>Articles list</h3>
 
-                <ul id="articles-list">
+            <div id="form">
+                <h2>Create article</h2>
+                <div class="form-container">
+                    <form id="create-article">
+                        <input id="title" name="title" type="text"/>
 
-                </ul>
+                        <input class="submit" type="submit"/>
+                    </form>
+
+                    div ->
+                </div>
             </div>
+
+            <div id="articles-list">
+                <div class="articles-container">
+                    <h3>Articles list</h3>
+                    <ul id="articles-list"></ul>
+                    <input class="submit" type="submit"/>
+
+                </div>
+            </div>
+
+            div
+
         </div>
-    </div>
+    </div>-->
 
-    <script>
-        var ArticlesList = Backbone.View.extend({
-            tagName: 'ul',
-            el: '#articles-list',
-            initialize: function() {
-                console.error('init view');
-                this.render();
-            },
-            render: function() {
-                this.$el.html('hello super Backbone View');
-            }
-        });
-
-        var Article = Backbone.View.extend({
-            tagName: 'li',
-            initialize: function() {
-                console.error('init view');
-                this.render();
-            },
-            render: function() {
-                this.$el.html('hello super Backbone View');
-            }
-        });
-
-
-        var MySuperModel = Backbone.Model.extend({});
-        var MySuperCollection = Backbone.Collection.extend({});
-
-        var view = new MySuperView();
-        var model = new MySuperModel();
-        var collection = new MySuperCollection();
-
-        console.log('view', view);
-        console.log('model', model);
-        console.log('collection', collection);
-    </script>
-
-
-<!--<script>
-    var form = document.getElementById('create-article');
-
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        var title = e.target.elements['title'];
-        var titleValue = title.value;
-        var titleTextNode = document.createTextNode(titleValue);
-
-        var article = document.createElement('li');
-        article.appendChild(titleTextNode);
-
-        var articlesList = document.getElementById('articles-list');
-        articlesList.appendChild(article);
-
-        // reset form
-        title.value = '';
-    });
-</script>-->
+    <script src="./js/main.js"></script>
 </body>
 </html>
