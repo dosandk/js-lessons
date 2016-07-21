@@ -17,10 +17,10 @@ var Form = Backbone.View.extend({
     },
     sendForm: function(e) {
         e.preventDefault();
-        console.log(e);
-        console.error('sendForm');
 
-        console.log(this.$('#title').val());
+        var value = this.$('#title').val();
+
+        articlesCollection.add({title: value});
     },
     initialize: function() {
         this.render();
@@ -30,7 +30,7 @@ var Form = Backbone.View.extend({
     }
 });
 
-var FormComments = Backbone.View.extend({
+/*var FormComments = Backbone.View.extend({
     el: '#form-comments',
     template: _.template(Templates.formComments),
     initialize: function() {
@@ -39,7 +39,7 @@ var FormComments = Backbone.View.extend({
     render: function() {
         this.$el.html(this.template());
     }
-});
+});*/
 
 var ArticlesList = Backbone.View.extend({
     el: '#articles-list',
@@ -52,11 +52,46 @@ var ArticlesList = Backbone.View.extend({
     }
 });
 
-var MySuperModel = Backbone.Model.extend({});
-var MySuperCollection = Backbone.Collection.extend({});
+var ArticleModel = Backbone.Model.extend({
+    defaults: {
+        title: 'default title',
+        description: 'super long text'
+    },
+    initialize: function() {
+        console.error(this);
+        this.set({id: Date.now()})
+    }
+});
+
+var ArticlesCollection = Backbone.Collection.extend({
+    model: ArticleModel,
+    initialize: function() {
+        console.error(this);
+    }
+});
 
 var app = new App();
+var articlesCollection = new ArticlesCollection();
 var form = new Form();
-var formComments = new FormComments();
+var articleModel = new ArticleModel();
+// var formComments = new FormComments();
 var articlesList = new ArticlesList();
-console.log(app);
+
+// var arr = [
+//     {
+//         id: 0
+//     },
+//     {
+//         id: 1
+//     },
+//     {
+//         id: 2
+//     }
+// ];
+
+// articlesCollection.add(arr);
+// articlesCollection.add({ id: 4, riba: 'riba'});
+
+// console.log('articleModel', articleModel);
+// console.log('articlesCollection', articlesCollection);
+console.log('get', articlesCollection.get(2));
