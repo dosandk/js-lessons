@@ -30,6 +30,17 @@ var Form = Backbone.View.extend({
     }
 });
 
+var FormComments = Backbone.View.extend({
+    el: '#form-comments',
+    template: _.template(Templates.formComments),
+    initialize: function() {
+        this.render();
+    },
+    render: function() {
+        this.$el.html(this.template());
+    }
+});
+
 var ArticlesList = Backbone.View.extend({
     el: '#articles-list',
     template: _.template(Templates.articlesList),
@@ -46,4 +57,6 @@ var MySuperCollection = Backbone.Collection.extend({});
 
 var app = new App();
 var form = new Form();
+var formComments = new FormComments();
 var articlesList = new ArticlesList();
+console.log(app);
