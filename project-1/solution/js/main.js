@@ -1,3 +1,18 @@
+var arr = [
+    {
+        id: 0,
+        data: 'asd123123asd'
+    },
+    {
+        id: 1,
+        data: 'osd;askd'
+    },
+    {
+        id: 2,
+        data: 'fsdfs;ldfk;'
+    }
+];
+
 var App = Backbone.View.extend({
     el: '#app',
     template: _.template(Templates.indexTemplate),
@@ -19,8 +34,13 @@ var Form = Backbone.View.extend({
         e.preventDefault();
 
         var value = this.$('#title').val();
+        var article = new Article();
 
-        articlesCollection.add({title: value});
+        article.setValue(value);
+
+        var riba = article.render();
+
+        $('#articles-list').append(riba);
     },
     initialize: function() {
         this.render();
@@ -41,14 +61,56 @@ var Form = Backbone.View.extend({
     }
 });*/
 
-var ArticlesList = Backbone.View.extend({
-    el: '#articles-list',
-    template: _.template(Templates.articlesList),
+var ArticlesContainer = Backbone.View.extend({
+    el: '#articles-container',
+    template: _.template(Templates.articlesContainer),
     initialize: function() {
         this.render();
     },
     render: function() {
         this.$el.html(this.template());
+
+        var articlesList = new ArticlesList();
+
+        this.$('#articles-list').html(articlesList.render());
+    }
+});
+
+var Article = Backbone.View.extend({
+    // el: '#articles-list',
+    tagName: 'li',
+    template: _.template(Templates.article),
+    initialize: function() {
+        //this.render();
+    },
+    setValue: function(value) {
+        this.value = value;
+    },
+    render: function() {
+        var self = this;
+
+        return self.$el.html(this.template({
+            data: self.value
+        }));
+    }
+});
+
+var ArticlesList = Backbone.View.extend({
+    tagName: 'ul',
+    render: function() {
+        var self = this;
+
+        articlesCollection.add(arr);
+
+        articlesCollection.each(function(el) {
+            var article = new Article();
+
+            article.setValue(el.get('data'));
+
+            self.$el.append(article.render());
+        });
+
+        return self.$el;
     }
 });
 
@@ -75,23 +137,4 @@ var articlesCollection = new ArticlesCollection();
 var form = new Form();
 var articleModel = new ArticleModel();
 // var formComments = new FormComments();
-var articlesList = new ArticlesList();
-
-// var arr = [
-//     {
-//         id: 0
-//     },
-//     {
-//         id: 1
-//     },
-//     {
-//         id: 2
-//     }
-// ];
-
-// articlesCollection.add(arr);
-// articlesCollection.add({ id: 4, riba: 'riba'});
-
-// console.log('articleModel', articleModel);
-// console.log('articlesCollection', articlesCollection);
-console.log('get', articlesCollection.get(2));
+var articlesContainer = new ArticlesContainer();
