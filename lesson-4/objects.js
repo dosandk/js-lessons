@@ -29,3 +29,13 @@ var arrC = new Object();
 // удаление свойств delete obj.name
 
 // обход полей объекта
+
+// var name = "Вася";
+// function sayHi() {
+//   alert(name);
+// }
+//
+// setTimeout(function() {
+//   var name = "Петя";
+//   sayHi();
+// }, 1000);
